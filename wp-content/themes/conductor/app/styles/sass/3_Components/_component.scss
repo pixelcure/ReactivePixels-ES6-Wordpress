@@ -1,0 +1,409 @@
+  /////////////////////////////////////////
+ // Components ///////////////////////////
+/////////////////////////////////////////
+
+
+// Perspective Transition
+.perspective {
+	position: relative;
+	height: 100%;
+	@include perspective(1200px);
+	width: 100%;
+	
+	.slide {
+		@include backface-visibility(hidden);
+		height: 100%;
+		left: 0;
+		overflow: hidden;
+		padding-top: 100px;
+		position: absolute;
+		top: 0;
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+		@include transform-style(preserve-3d);
+		visibility: hidden;
+		width: 100%;
+		
+		&:first-child { padding-top: 0; }
+		
+		&.slide-ontop {
+			z-index: 1000;
+		}
+		
+		&.slide-current {
+			overflow: auto;
+			visibility: visible;
+		}
+	} // End Slide
+
+} // End Perspective
+
+// Menu Icon
+.menu-icon {
+	cursor: pointer;
+	height: 25px;
+	padding-top: 1.3px;
+	width: 25px;
+	
+	small {
+		color: $textColor;
+		display: block;
+		@include font-size(8px);
+	    float: left;
+	    height: 100%;
+	    font-weight: 100;
+	    margin: 0 0 0 -45px;
+	    padding-top: 2px;
+	    text-transform: uppercase;
+	    letter-spacing: .2em;
+		@include user-select(none);
+	    width: 45px;
+	}
+	
+	span {			
+	    background: #FFF;			
+	    display: block;
+		height: 1px;
+		margin-bottom: 7px;
+		position: relative;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&.open {
+		margin-top: -2px;
+		transition: .5s ease-in-out;
+		
+		small { padding-top: 4px; }
+		
+		span {
+
+			&.top {
+				top: 10px;
+			    @include transform(rotate(135deg));
+			    position: relative;
+			}
+			&.mid {
+				width: 0px;
+			    opacity: 0;
+			}
+			&.bottom {
+			    top: -5px;
+			    @include transform(rotate(-135deg));
+				
+			}
+		} // End Span
+
+	} // End Menu Open
+} // Menu Icon
+
+// Title Header
+.title-header {
+	display: table;
+	max-height: 65px;
+	position: relative;
+	width: 100%;
+
+	.left {
+	    border-top: 1px solid #BEFCF7;
+	    border-bottom: 1px solid #BEFCF7;
+	    height: 45px;
+	    margin: 0 25px 0 0;
+	    overflow: hidden;
+	    width: calc(100% - 204px);
+
+		h1 {
+			color: $white;
+			font-family: $directorsCut;
+			font-size: 2.1vmin;
+			letter-spacing: 0.07px;
+			line-height: 43px;
+		    margin: 0 auto 0 auto;
+			text-transform: uppercase;
+			text-shadow: 0px 2px 4px rgba(0,0,0,0.50);
+			width: 90%;
+			b {
+				color: rgba(255, 255, 255, .36);
+			}
+		}
+
+		&:after {
+		    content: '';
+		    border-top: 1px solid #BEFCF7;
+		    border-right: 1px solid #BEFCF7;
+		    height: 31px;
+		    position: absolute;
+		    @include transform(rotate(45deg));
+		    top: 7px;
+		    width: 31px;
+		    right: 188px;
+		}
+	} // End Left Title Bar
+	
+	.right {
+		margin-top: -55px;
+	}
+
+	.menu-icon {
+	    float: none;
+	    position: absolute;
+	    right: 55px;
+	    top: 65px;	
+	}
+
+} // End Title Header
+
+// Video Player
+.video-player {
+	overflow: hidden;
+	position: relative;
+	@include box-shadow(1px 5px 10px rgba(0, 0, 0, .4));
+	width: 100%;
+
+	video {
+		min-height: 100%;
+		min-width: 100%;
+		height: auto;
+		width: 100%;
+	}
+
+	.video-control {
+		background: $headerBg;
+		cursor: pointer;
+    	height: 86px;    	
+    	left: 0;
+    	margin-left: -21px;
+    	position: absolute;
+    	top: 40%;
+    	transition: .3s ease-in-out;
+    	transform: translateY(-40%);
+    	width: 35px;
+    	z-index: 100;
+			
+			.icon {
+				color: rgba(255, 255, 255, 0.3);
+			    display: block;
+				@include font-size(18px);
+			    padding: 8px 5px;			
+			    text-align: center;
+			
+				&.hidden { display: none; }
+			}
+			
+			&.margin-left { margin-left: 0; }
+			
+			&:hover {
+				margin-left: 0;
+		
+				div.control:hover {
+					background: $cBlue;
+				    transition: .5s;
+
+					.icon {
+						color: $textColor;
+					}
+					img {
+						@include transform(scale(1.06));
+					}
+				}
+			} // End Video Control:hover
+
+	} // End Volume Control
+
+} // End Video Player
+
+// Scroll Down Animation
+.scroll-down {
+    @include background-image-linear(transparent 20%, rgba(0,0,0,.8) 120%);
+    font-family: $openSans;
+    height: 200px;
+    padding: 60px 25px 25px 25px;
+    text-align: center;
+    @include transform(translateX(0));
+    transition: 2.1s ease-in-out, opacity 2.1s;
+    width: 100%;
+
+    h2 {
+    	color: $white;
+    	display: block;
+    	font-weight: 100;
+    	@include font-size(14px);
+    	margin-top: 15px;
+    	transition: transform 1.8s, opacity 1.8s;
+	    text-shadow: 1px 1px 1px rgba(0,0,0, .4);
+    	text-transform: uppercase;
+    	position: relative;
+    	z-index: 100;
+    }
+
+    span.icon {
+    	color: $white;
+	    border: 2px solid #0B3F4D;
+		@include box-shadow(1px 1px 1px $darkShadow);
+	    @include border-radius(360px);
+	    color: $white;
+	    display: inline-block;
+	    padding: 10px;
+	    position: relative;
+	    transition: .5s, opacity 2s;
+	    @include transform(rotate(90deg));
+	    z-index: 400;
+
+	    &:after {
+		    background: #9E9191;
+		    bottom: 4px;
+		    color: rgba(0, 0, 0, 0.4);
+		    height: 6px;
+		    position: absolute;	    	
+		    text-align: center;
+		    width: 1px;
+		    z-index: 200;
+	    }
+
+    } // End Icon
+
+	&:hover {
+		height: 200px;
+		opacity: 0;
+		@include transform(translate(0, 300px));
+		
+		h2 {
+			color: $darkShadow;
+			transition: 3s;
+			opacity: 0;
+			@include transform(translateY(100px));
+		}
+
+		span {
+			background: $white;
+			border: 0;
+			@include font-size(0px);
+			height: 30px;
+			opacity: 0;
+			@include transform(rotate(-180deg));
+			width: 15px;
+			z-index: 100;
+			&:after {
+				content: '|';
+			}
+		}
+
+	} // End Scroll Down Hover
+
+} // End Scroll Down
+
+// Work Grid
+.work-grid {
+	display: table;
+    @include box-shadow(1px 5px 10px rgba(0, 0, 0, .4));
+
+	.grid-row {
+		display: table-row;
+		padding: 0;
+		margin: 0;
+
+		.item {
+			display: table-cell;
+			position: relative;
+			overflow: hidden;
+			
+			a { display: block; }
+
+			.image-container {
+				overflow: hidden;
+				img { 
+					transition: .8s cubic-bezier(0.36, -0.02, 0.21, 1);
+					transition-delay: .05s;
+					vertical-align: bottom; 
+				}
+			} // End Image Container	
+
+			.caption {
+			    background: rgba(31, 183, 198, 0.7);	
+			    border: 5px solid rgba(190,252,247,.2);		
+			    height: 100%;
+			    position: absolute;
+				opacity: 0;
+			    transition: .3s ease-in-out;
+			    width: 100%;
+			    z-index: 100;
+
+				.inner {
+					overflow: hidden;
+					opacity: 0;
+					position: absolute;
+					top: 50%;
+					@include transform(translateY(150px));
+					transition: .5s;
+					width: 100%;
+
+					    span {
+				    		display: block;
+							text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+
+					    	&.icon {
+							    color: rgba(190,252,247,.3);
+							    font-size: 4.5vmin;	
+							    text-align: center;
+							    text-shadow: none;
+					    	}
+					    	&.title {
+					    		color: $textColor;
+							    font-size: 2.1vmin;
+							    font-weight: 100;
+							    line-height: 6.5vh;
+							    text-align: center;
+					    	}
+							&.view {
+						    	display: block;
+								font-size: 1.1vmin;
+								font-weight: 400;
+		    					margin: 0 auto;
+							    text-align: center;
+							    text-transform: uppercase;
+							}
+					    } // End Span
+
+				} // End Inner
+
+			} // End Caption
+
+			&:hover {
+				img {
+					transform: scale(1.06);
+				}
+				.caption { 
+					opacity: 1;
+					.inner {
+						opacity: 1;
+						@include transform(translateY(-50%));
+					}
+				}
+			} // End Item Hover
+
+		} // End Item
+	} // End Grid Row
+
+} // End Work Grid
+
+// Contact Form
+.wpcf7-form {
+	.wpcf7-response-output {
+		    background: $cBlue;
+		    border: 1px solid $textColor;
+		    color: $white;
+		    @include font-size(14px);
+		    font-weight: 100;
+		    padding: 20px;
+		    text-align: center;
+		    text-transform: uppercase;
+
+		&.wpcf7-validation-errors {
+			border: 1px solid #A15F5F;
+		    background: rgba(255,0,0,.5);
+		    text-shadow: 1px 1px 1px $darkShadow;
+		}		
+	} // End Response Output
+} // End Contact Form 7

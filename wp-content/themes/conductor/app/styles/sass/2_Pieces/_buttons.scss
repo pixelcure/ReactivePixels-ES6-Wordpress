@@ -1,0 +1,41 @@
+  ////////////////////////////////
+ // BUTTONS  ////////////////////
+////////////////////////////////
+
+[data-role="button"], 
+button,
+.button {
+    background: $strokeColor;
+    @include box-shadow(1px 2px 2px rgba(0, 0, 0, .9));
+    color: $siteBg;
+    font-weight: 200;
+    padding: 8px 25px 5px;
+    text-shadow: none;
+    transition: .3s ease-in-out;    
+        
+        &:hover,
+        &:active,
+        &:focus,
+        &:visited{
+            border: 1px solid $strokeColor;
+            background: $siteBg;
+            @include box-shadow(none);
+            color: $white;
+            text-decoration:none;
+        }
+
+        &:active,
+        &:focus{
+            background: $siteBg;
+            @include box-shadow(none);
+            color: $white;
+        }
+
+        &::-moz-focus-inner {
+            background: $siteBg;
+            @include box-shadow(none);    
+            color: $white;
+        }
+
+} // End Button
+

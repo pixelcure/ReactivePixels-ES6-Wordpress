@@ -1,0 +1,282 @@
+// Configurable variables
+// ⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻
+
+// Absolute height of body text, in pixels
+$base-font-size: 16px !default;
+
+// Absolute height of one line of type, in pixels
+$base-line-height: 24px !default;
+
+// The font unit to use when returning values in rhythm functions
+$rhythm-font-unit: px !default;
+
+// Allows the `adjust-font-size-to` mixin and the `lines-for-font-size` function
+// to round the line height to the nearest half line height instead of the
+// nearest integral line height to avoid large spacing between lines.
+$round-to-nearest-half-line: true !default;
+
+// Ensure there is at least this many pixels
+// of vertical padding above and below the text.
+$min-line-padding: 2px !default;
+
+
+// Constants
+// ⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻
+
+// Most (all?) browsers use a default of 16px for type.
+$browser-default-font-size: 16px;
+
+// The height of one line of type, in rems.
+$rem-line-height: $base-line-height / $base-font-size * 1rem;
+
+
+// Moving parts
+// ⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻
+
+// Given pixel inputs, print rem values with pixel fallbacks.
+// Based on Bitmanic's rem mixin (https://github.com/bitmanic/rem)
+//
+// $property  - The css property name
+// $px-values - The value or values (space-separated list) for $property, in pixels
+@mixin px-to-rem($property, $px-values) {
+  // Number of pixels in 1rem (default: 16px/rem)
+  // When converting to rems, we must divide by this ratio.
+  $px-per-rem: $base-font-size / 1rem;
+
+  // Print the pixel fallback declaration first so we can override it in capable browsers.
+  #{$property}: $px-values;
+
+  // If there is only one value, print the declaration with the value converted to rems.
+  @if type-of($px-values) == "number" {
+	#{$property}: $px-values / $px-per-rem;
+  }
+  @else {
+	// Otherwise, we've got a list and we'll need to convert each value in turn.
+	// Create an empty list that we can dump values into.
+	$rem-values: ();
+	@each $value in $px-values {
+	  // If the value is zero, a string or a color, leave it be.
+	  @if $value == 0 or type-of($value) == "string" or type-of($value) == "color" {
+		$rem-values: append($rem-values, $value);
+	  } @else {
+		$rem-values: append($rem-values, $value / $px-per-rem);
+	  }
+	}
+	// Print the property and its list of converted values.
+	#{$property}: $rem-values;
+  }
+}
+
+// Return the height of n baselines.
+// Returns px or rem based on the value of $rhythm-font-unit.
+@function rhythm($lines: 1) {
+	$line-height: if($rhythm-font-unit != px, $rem-line-height, $base-line-height);
+	@return $line-height * $lines;
+}
+
+// Calculate the number of baselines required to accomodate a
+// given pixel-based font size.
+@function lines-for-font-size($font-size) {
+	$lines: if(
+		$round-to-nearest-half-line,
+		ceil(2 * $font-size / $base-line-height) / 2,
+		ceil($font-size / $base-line-height)
+	);
+	@if $lines * $base-line-height - $font-size < $min-line-padding * 2 {
+		$lines: $lines + if($round-to-nearest-half-line, 0.5, 1);
+	}
+	@return $lines;
+}
+
+// Set type size and baseline grid on the root element.
+@mixin establish-baseline {
+	html {
+		$new-font-size: $base-font-size / $browser-default-font-size * 100%;	// eg. 16px ÷ 16px * 100%
+		// Only set the font size if it differs from the browser default
+		@if $new-font-size != 100% {
+			font-size: $new-font-size;
+		}
+		@include set-leading(1);
+	}
+}
+
+// Set the font size to the specified number of pixels while
+// maintaining the vertical rhythm.
+//
+// $to-size - Desired font size, in pixels
+// $lines   - Desired leading, expressed in baselines (can fractional)
+@mixin set-font-size($to-size, $lines: lines-for-font-size($to-size)) {
+	@include px-to-rem(font-size, $to-size);
+	@include set-leading($lines);
+}
+
+// Adjust the leading to a new multiple of the baseline
+@mixin set-leading($lines) {
+	@include px-to-rem(line-height, $base-line-height * $lines);
+}
+
+// Apply leading whitespace
+@mixin leader($lines: 1, $property: margin) {
+	@include px-to-rem(#{$property}-top, rhythm($lines));
+}
+
+// Apply trailing whitespace
+@mixin trailer($lines: 1, $property: margin) {
+	@include px-to-rem(#{$property}-bottom, rhythm($lines));
+}
+
+// Apply leading whitespace as padding
+@mixin padding-leader($lines: 1) {
+	@include leader($lines, padding);
+}
+
+// Apply trailing whitespace as padding
+@mixin padding-trailer($lines: 1) {
+	@include trailer($lines, padding);
+}
+
+// Apply leading and trailing whitespace together.
+// Defaults to equal margins above and below and no padding.
+@mixin rhythm-spacing($leader: 1, $trailer: $leader, $padding-leader: 0, $padding-trailer: $padding-leader) {
+	@include leader($leader);
+	@include trailer($trailer);
+	@include padding-leader($padding-leader);
+	@include padding-trailer($padding-trailer);
+}
+
+// Apply a border to one side of an element without throwing off
+// the vertical rhythm. The available space ($lines) must be
+// greater than the width of your border.
+@mixin side-rhythm-border($side, $lines: 1, $border: $rule-width $rule-style $rule-color) {
+	$width: nth($border, 1);
+	$style: nth($border, 2);
+	$color: nth($border, 3);
+	@include px-to-rem(border-#{$side}, $width $style $color);
+
+	$padding: ($base-line-height - $width) * $lines;
+	@include px-to-rem(padding-#{$side}, $padding);
+}
+
+// Apply a leading rhythm border
+@mixin leading-border($lines: 1, $border: $rule-width $rule-style $rule-color) {
+	@include side-rhythm-border(top, $lines, $border);
+}
+
+// Apply a trailing rhythm border
+@mixin trailing-border($lines: 1, $border: $rule-width $rule-style $rule-color) {
+	@include side-rhythm-border(bottom, $lines, $border);
+}
+
+// Apply borders equally to all sides with padding to maintain the vertical rhythm
+@mixin rhythm-borders($lines: 1, $border: $rule-width $rule-style $rule-color) {
+	$width: nth($border, 1);
+	$style: nth($border, 2);
+	$color: nth($border, 3);
+	@include px-to-rem(border, $width $style $color);
+
+	$padding: ($base-line-height - $width) * $lines;
+	@include px-to-rem(padding, $padding);
+}
+
+// Max Screen
+@mixin max-screen($res)
+{
+  @media screen and ( max-width: $res )
+  {
+	@content;
+  }
+}
+
+// Min Screen
+@mixin min-screen($res)
+{
+  @media screen and ( min-width: $res )
+  {
+	@content;
+  }
+}
+
+// Perspective 
+@mixin perspective($perspective){
+	-webkit-perspective: $perspective;
+	-moz-perspective: $perspective;
+	perspective: $perspective;
+}
+
+// Backface Visibility
+@mixin backface-visibility($val){
+	-webkit-backface-visibility: $val;
+	-moz-backface-visibility: $val;
+	-o-backface-visibility: $val;
+	backface-visibility: $val;
+}
+
+// Transform
+@mixin transform($val){
+	-webkit-transform: $val;
+	-o-transform: $val;
+	-moz-transform: $val;
+	transform: $val;
+}
+
+// Transform Style
+@mixin transform-style($val){
+	-webkit-transform-style: $val;
+	-moz-transform-style: $val;
+	-o-transform-style: $val;
+	transform-style: $val;
+}
+
+// Background Image Gradient
+@mixin background-image-linear($val1, $val2){
+    background-image: -webkit-linear-gradient($val1, $val2);
+    background-image: -o-linear-gradient($val1, $val2);
+    background-image: linear-gradient($val1, $val2);
+}
+
+// No User Select Text Highlighting
+@mixin user-select($val){
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+//Mixin to easily add a device orientation media query. Ex. @include orientation(portrait){display: none;}
+@mixin orientation($point) {
+  @if $point == landscape {
+	@media only screen and (orientation: landscape){
+		@content;
+	}
+  }@else if $point == portrait{
+	@media only screen and (orientation: portrait){
+		@content;
+	}
+  }
+}
+
+
+
+$small-screen: 240px;
+$medium-screen: 640px;
+$large-screen: 1024px;
+
+@mixin device-size($media) {
+  @if $media == mobile {
+	@media only screen and (min-width: $small-screen) and (max-width: $medium-screen) { @content; }
+  }
+  @else if $media == tablet {
+	@media only screen and (min-width: $medium-screen + 1) and (max-width: $large-screen) { @content; }
+  }
+
+  @else if ($media == tablet-and-mobile) or ($media == mobile-and-tablet) {
+	@media only screen and (max-width: $large-screen) { @content; }
+  }
+
+  @else if $media == desktop {
+	@media only screen and (min-width: $large-screen + 1) { @content; }
+  }
+
+  @else if ($media == tablet-and-desktop) or ($media == desktop-and-tablet)  {
+	@media only screen and (min-width: $medium-screen) { @content; }
+  }
+}

@@ -1,0 +1,95 @@
+  ////////////////////////////////
+ // FOOTER //////////////////////
+////////////////////////////////
+
+footer {
+	background: rgba(255, 255, 255, 0.01);
+	border-top: 1px solid rgba(51,162,163,.1);
+	overflow: hidden;
+	padding-top: 25px;
+	height: 100px;
+	
+	.footer-inner {
+		display: table;
+		margin: 0 auto;
+		width: 90%;
+		
+		.company-info {
+			display: table;
+			margin-top: 12px;
+
+			.site-title {
+				color: $white;
+				display: table-cell;
+				font-family: $directorsCut;
+				text-transform: uppercase;
+				vertical-align: middle;
+			} // End Site Title
+			
+			span {
+				color: $textColor;
+				display: block;
+				@include font-size(12px);
+				text-transform: uppercase;
+				margin-bottom: 5px;
+			}
+			
+		} // End Company Info
+		
+		.footer-nav {
+			display: table-cell;
+			overflow: hidden;
+			vertical-align: top;
+
+			.copyright {
+				display: block;
+			}
+			
+			ul.social-media {
+				display: table;
+				float: right;
+				padding: 0 0 0 20px;
+
+				li {
+					display: table-cell;
+					list-style: none;
+					padding-right: 10px;
+				}
+			} // End Social Media
+
+			ul.menu {
+				display: table;
+				float: right;
+				padding: 0;
+
+				li {
+					display: table-cell;
+					color: $textColor;
+					list-style: none;
+					padding-right: 10px;
+					&:after {
+						content: '|';
+						color: $white;
+						padding-left: 10px;
+					}
+					&:last-child { 
+						padding-right: 0; 
+						&:after { content: ''; }
+					}
+
+					a {
+						text-transform: uppercase;
+						font-weight: 100;
+						transition: .3s ease-in-out;
+
+						&:hover {
+							color: $white;
+						}
+					}
+				} // End Nav Item
+			} // End Nav List
+
+		} // End Footer nav
+
+	} // End Footer Inner
+} // End Footer

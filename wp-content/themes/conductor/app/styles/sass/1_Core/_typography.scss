@@ -1,0 +1,157 @@
+  ////////////////////////////////
+ // TYPOGRAPHY //////////////////
+////////////////////////////////
+
+
+// Import Global Typeface
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+@font-face {
+    font-family: 'directors_cut_pro_regular_2';
+    src: url('../fonts/directorscutbold/directors_cut_pro_bold-webfont.eot');
+    src: url('../fonts/directorscutbold/directors_cut_pro_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/directorscutbold/directors_cut_pro_bold-webfont.woff2') format('woff2'),
+         url('../fonts/directorscutbold/directors_cut_pro_bold-webfont.woff') format('woff'),
+         url('../fonts/directorscutbold/directors_cut_pro_bold-webfont.ttf') format('truetype'),
+         url('../fonts/directorscutbold/directors_cut_pro_bold-webfont.svg#directors_cut_pro_regular_2') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'directors_cut_proregular';
+    src: url('../fonts/directorscut/directors_cut_pro-webfont.eot');
+    src: url('../fonts/directorscut/directors_cut_pro-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/directorscut/directors_cut_pro-webfont.woff2') format('woff2'),
+         url('../fonts/directorscut/directors_cut_pro-webfont.woff') format('woff'),
+         url('../fonts/directorscut/directors_cut_pro-webfont.ttf') format('truetype'),
+         url('../fonts/directorscut/directors_cut_pro-webfont.svg#directors_cut_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+//Adjusting font sizes based off of Le Corbusier modular scale
+
+// Absolute height of body text, in pixels
+$baseFontSize: 13px;
+
+// Absolute height of one line of type, in pixels
+$baseLineHeight: 24px;
+
+//Footer links, header nav
+$small-font-size: 13px;
+$small-font-leading: 1.25;
+$small-font-size--mobile: 16px;
+
+//Base paragraph
+$base-font-size: 13px;
+$base-font-leading: 1.4;
+$base-font-size--mobile: 13px;
+
+//Section header - originally 18px, also blockquote cited author
+$medium-font-size: 30px;
+$medium-font-leading: 1.25;
+$medium-font-size--mobile: 20px;
+
+// H3 -- 24
+$large-font-size: 20px;
+$large-font-size--mobile: 20px;
+$large-font-leading: 1.25;
+
+//H2 - Also make 30px font in footer this & the blockquote large text this
+$xlarge-font-size: 30px;
+$xlarge-font-leading: 1.5;
+$xlarge-font-size--mobile: 32px;
+
+//H1 - originally 72, using scale to make it 67
+$xxlarge-font-size: 60px;
+$xxlarge-font-leading: 3.25;
+$xxlarge-font-size--mobile: 42px;
+
+
+
+/*
+ * Main Typefaces being used
+ */
+
+$openSans : Open-Sans, sans-serif;
+$directorsCut : 'directors_cut_proregular', serif;
+$directorsCutBold : 'directors_cut_pro_regular_2', serif;
+
+
+/*
+ * Emphasised/Italic Text
+ */
+em {
+	font-style: italic;
+}
+
+/*
+ * Bolded, Strong Text
+ */
+strong {
+	font-weight: bold;
+}
+
+@function strip-unit($num) {
+	@return $num / ($num * 0 + 1);
+}
+
+@mixin font-size($size, $lineHeight: "") {
+	@if $size == "small" {
+		$size: $small-font-size;
+	} @else if $size == "base" {
+		$size: $base-font-size;
+	} @else if $size == "medium" {
+		$size: $medium-font-size;
+	} @else if $size == "large" {
+		$size: $large-font-size;
+	} @else if $size == "xlarge" {
+		$size: $xlarge-font-size;
+	} @else if $size == "xxlarge" {
+		$size: $xxlarge-font-size;
+	} @else {
+		$size: $size;
+	}
+
+	@if $lineHeight == "" {
+		$lineHeight: ( strip-unit( $size ) * 1.25) / 24;
+	} @else {
+		$lineHeight: ( strip-unit( $size ) * $lineHeight) / 24;
+	}
+
+	@include set-font-size($size, $lineHeight);
+}
+
+
+@mixin mobile-font-size($mobileSize: "", $mobileLineHeight: "") {
+
+	@if $mobileSize == "small" {
+		$mobileSize: $small-font-size--mobile;
+	} @else if $mobileSize == "base" {
+		$mobileSize: $base-font-size--mobile;
+	} @else if $mobileSize == "medium" {
+		$mobileSize: $medium-font-size--mobile;
+	} @else if $mobileSize == "large" {
+		$mobileSize: $large-font-size--mobile;
+	} @else if $mobileSize == "xlarge" {
+		$mobileSize: $xlarge-font-size--mobile;
+	} @else if $mobileSize == "xxlarge" {
+		$mobileSize: $xxlarge-font-size--mobile;
+	} @else {
+		$mobileSize: $base-font-size--mobile;
+	}
+
+	@include device-size(mobile){
+
+		@if $mobileLineHeight == "" {
+			$mobileLineHeight: ( strip-unit( $mobileSize ) * 1.25) / 24;
+		} @else {
+			$mobileLineHeight: ( strip-unit( $mobileSize ) * $mobileLineHeight) / 24;
+		}
+
+		@include set-font-size($mobileSize, $mobileLineHeight);
+	}
+}

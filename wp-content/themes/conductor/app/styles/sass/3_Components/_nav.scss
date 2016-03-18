@@ -1,0 +1,63 @@
+  //////////////////////////////////////
+ // NAVIGATION ////////////////////////
+//////////////////////////////////////
+
+nav {
+	background: $siteBg;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	@include transform(translate3d(0, -100%, 0));
+	top: -100px;
+	transition: .8s ease-in-out;
+	width: 100%;
+	z-index: 900;
+
+	div {
+	    left: 50%;
+		position: absolute;
+	    top: 50%;
+	    @include transform(translate(-50%, -50%));
+	    width: 100%;
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			
+			li {
+				transition: .6s ease-in-out;
+				
+				&.current_page_item,
+				&:hover {
+					background: rgba(255, 255, 255, .04);
+				}
+
+				a {
+					color: $textColor;
+					display: block;
+					font-size: 5.5vw;
+					font-weight: 100;
+					line-height: 16vh;
+					font-weight: 900;
+					letter-spacing: 0.1em;
+					text-align: center;
+					text-decoration: none;
+					text-transform: uppercase;
+					text-shadow: 1px 1px 1px $darkShadow;
+					@include user-select(none);
+				}
+			} // End Li
+
+		} // End Nav Ul
+
+	} // End Div Menu
+
+	&.open {
+		background: $menuBg;
+		@include transform(translate3d(0, 0, 0));
+		// transition-delay: .02s;
+		display: block;
+	} // End Menu Open
+
+} // End Nav

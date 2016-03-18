@@ -1,0 +1,31 @@
+  ////////////////////////////////
+ // HEADER //////////////////////
+////////////////////////////////
+
+header {
+	background: $headerBg;
+    @include box-shadow(1px 5px 10px rgba(0,0,0,.3));
+    height: 35px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: fixed;
+	opacity: 0;
+	transition: .5s;
+    top: -35px;
+	width: 100%;
+	z-index: 1000;
+	
+	&.top { opacity: 1; }
+
+	.header-inner {
+	    margin: 0 auto;
+	    width: 100%;
+	    padding: 8px 25px;
+
+		.logo-container {
+			transition: .5s;
+		    width: 140px;
+		} // Logo Container
+	} // Header Inner
+
+} // End Header

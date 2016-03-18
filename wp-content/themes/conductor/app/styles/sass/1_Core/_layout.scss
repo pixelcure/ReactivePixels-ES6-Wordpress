@@ -1,0 +1,89 @@
+//////////////////////////////////
+// LAYOUT ///////////////////////
+////////////////////////////////
+
+@include add-grid(12);
+@include add-gutter(1/3);
+
+
+@include sgs-change('debug', true);
+
+.outer-wrapper{
+	position: relative;
+	width:100%;
+}
+
+.inner-wrapper{
+
+	position: relative;
+	max-width: 1400px;
+	margin: 0 auto;
+	width: 90%;
+}
+img{
+	height: auto;
+	width: 100%;
+}
+.row{
+	@extend .clearfix;
+	@include rhythm-spacing(1,1);
+}
+
+.col{
+	// background: rgba(255,255,255,.4);
+	padding: 2px;
+	&:last-child{
+		margin-right: 0; 
+	}
+}
+
+.span_12{
+	@include grid-span(12,1,12,.1,'float');
+}
+
+.span_8{
+	@include grid-span(8,1,12,.1,'float');
+}
+
+.span_4{
+	@include grid-span(4,1,12,.1,'float');
+
+}
+
+.span_8 + .span_4{
+	@include grid-span(4,9,12,.1,'float');
+}
+
+.span_4 + .span_8{
+	@include grid-span(8,5,12,.1,'float');
+}
+
+.span_6{
+	@include grid-span(6,1,12,.1,'float');
+}
+
+.span_3{
+	@include grid-span(3,1,12,.1,'float');
+	
+	@include max-screen(960px){
+		@include grid-span(6,1,12,.0,'float');
+	}
+	
+	@include max-screen(640px){
+		@include grid-span(12,1,12,.0);
+	}
+}
+
+.span_4 {
+
+	@include grid-span(4,1,12,.1,'float');
+	
+	@include max-screen(960px){
+		@include grid-span(6,1,12,.0,'float');
+	}
+	
+	@include max-screen(640px){
+		@include grid-span(12,1,12,.0);
+	}
+
+}

@@ -1,0 +1,11 @@
+{
+  "name": "conductor-master",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~1.9.0",
+    "underscore": "~1.4.3",
+    "modernizr": "~2.6.2",
+    "singularity": "~1.4.0"
+  },
+  "devDependencies": {}
+}

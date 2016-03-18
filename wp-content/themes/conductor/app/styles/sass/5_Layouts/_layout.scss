@@ -1,0 +1,31 @@
+  ////////////////////////////////
+ // LAYOUT //////////////////////
+////////////////////////////////
+
+body {
+	@include perspective(1200px);
+	
+	&.no-js { 
+		overflow: visible; 
+		.slide { visibility: visible; z-index: 1; }
+	}
+	
+	main {
+		transform: translate3d(0, 0, 0);
+	    transition: 2.1s cubic-bezier(0.42, 0, 0.15, 1.00);
+		&.transition-fast {
+			transition-delay: .02s;
+			transition: .6s linear;
+		}
+	}
+
+	&.with-nav-open {
+		overflow: hidden;
+
+		main {
+			transform: translate3d(0, 100%, 0);
+		}
+
+	}
+
+} // End Body

@@ -1,0 +1,15 @@
+  ////////////////////////////////
+ // HERO ////////////////////////
+////////////////////////////////
+
+.hero-container {
+	margin: 0 0 45px 0;
+	position: relative;
+	
+	.video-player {
+		border-bottom: 2px solid rgba(0, 0, 0, .5);
+	    border-top: 2px solid rgba(0, 0, 0, .5);		
+		height: 475px;
+	}
+
+} // end hero container
