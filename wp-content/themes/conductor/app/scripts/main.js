@@ -2,6 +2,7 @@
 var $ = require('jquery');
 // React Instance
 var React = require('react');
+
 // Google Maps
 var GoogleMapsLoader = require('google-maps');
     GoogleMapsLoader.KEY = 'AIzaSyDe5DYJZUSe9nw6NjyrYnxMAD3rH4khQY4';
