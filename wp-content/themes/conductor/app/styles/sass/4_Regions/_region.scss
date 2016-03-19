@@ -13,93 +13,39 @@ main.home {
 		overflow: hidden;
 		width: 100%;
 
-		.top {
+		.inner-wrapper { min-height: 100px; }
+
+		.work-types {
 			display: table;
-			min-height: 300px;
-			
-			.blurb-headline {
-				background: rgba(255, 255, 255, .015);
+			padding: 0;
+			width: 100%;
+			li {
 				display: table-cell;
-				border-right: 1px solid $strokeColor;
-				margin: 0 0 25px 0;
-				padding: 3.3% 25px 0 25px;
-				text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+				list-style: none;
 				width: 33%;
 
-				.intro-left {
-					color: $white;
-					font-family: $directorsCut;
-					@include font-size(24px);
-					font-size: 2.8vmin;
-					letter-spacing: 0.12em;
-					line-height: 3.1vh;
-				} // End Intro Left Headline
-				
-				.work-types {
-					display: table;
-					padding: 0;
-					width: 100%;
-
-					li {
-						display: table-row;
-						list-style: none;
-
-						&:last-child {
-							a {
-								margin-bottom: 0;
-							}
-						}
-
+					&:last-child {
 						a {
-							color: $strokeColor;
-							display: block;
-							font-size: 2.1vmin;
-							letter-spacing: 0.12em;
-							margin-bottom: 25px;
-							transition: .3s ease-in-out;
-							text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-							text-transform: uppercase;
-							&:hover {
-								color: $white;
-							}
+							margin-bottom: 0;
 						}
-					} // End Type
-				} // End WOrk Types
+					}
 
-			} // End Blurb Headline
-
-			.blurb-right {
-				display: table-cell;
-				padding: 0 25px 25px 45px;			
-				position: relative;
-				vertical-align: middle;
-				width: 66%;
-
-				.callout-header {
-					color: $textColor;
-					font-size: 2.1vmin;
-					line-height: 3.3vh;
-					font-weight: 100;
-					margin-bottom: 0;
-					text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-				}
-
-				p {
-					color: $textColor;
-					opacity: .7;
-					font-family: $openSans;
-					font-weight: 100;
-					@include font-size(18px);
-					font-size: 1.6vmin;
-					line-height: 3.3vh;
-					letter-spacing: 0.09em;
-					margin: 0;
-					padding-top: 15px;
-					text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
-				}		
-			} // End Blurb Right Aside
-		} // End Intro Inner
-	} // end intro outer
+					a {
+						color: $strokeColor;
+						display: block;
+						font-size: 2.1vmin;
+						letter-spacing: 0.12em;
+						text-align: center;
+						transition: .3s ease-in-out;
+						text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+						text-transform: uppercase;
+						&:hover {
+							color: $white;
+						}
+					}
+				} // End Type
+			} // End WOrk Types
+	} // End Intro Outer
 
 	.work-outer {
 		border-top: 2px solid rgba(0, 0, 0, .5);
@@ -217,8 +163,9 @@ main.home {
 		aside {
 			float: left;
 			margin-top: 175px;
-			padding: 0 25px 25px 9.5%;
+			padding: 0 25px 25px 80px;
 			position: relative;
+			width: 50%;
 			z-index: 100;
 
 			h3, h4 {

@@ -3,26 +3,26 @@ var $ = require('jquery');
 export default class {
 
 	constructor(nav, menuTrigger) {
-		
+
+		// Navigation
 		this.nav = document.getElementsByTagName(nav)[0];
+		
+		// Nav Menu Trigger
 		this.menuTrigger = document.getElementsByClassName(menuTrigger);
 
-		// Init 
-		this.init = function () {
-			console.log('init nav');
-			$(window).resize(function() {
-				if( $(this).width() <= 800 ){
-					$(this.nav).show();
-				}
-			});
-			
-			$('.menu-trigger').on('click', this.menuToggle);
-		
-		};
+		// On Resize Hide or show nav depending on viewport
+		$(window).resize(function() {
+			if( $(this).width() <= 800 ){
+				$(this.nav).show();
+			}
+		});
+
+		// On click, show or hide the menu
+		$('.menu-trigger').on('click', this.menuToggle);
 		
 		// Menu Toggle
 		this.menuToggle = function (event) {
-			console.log('menu toggle');
+
 			var $menuBtn = $(this);
 
 			if( $( this.nav ).hasClass('open') ){

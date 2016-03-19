@@ -7,6 +7,7 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "connect-livereload": "*",
+    "g": "^2.0.0",
     "grunt": "~0.4.5",
     "grunt-babel": "^6.0.0",
     "grunt-bower-requirejs": "*",
@@ -32,7 +33,9 @@
     "jshint-stylish": "*",
     "load-grunt-tasks": "*",
     "react": "*",
-    "time-grunt": "*"
+    "react-dom": "^0.14.7",
+    "time-grunt": "*",
+    "classnames": "^0.2.23"
   },
   "engines": {
     "node": "~4.2.1"

@@ -1,50 +1,43 @@
-var $ = require('jquery');
+// Depdendencies
 
-export default class {
+// jQuery Instance
+import $ from 'jquery';
+// React Instance
+import React from 'react';
+// React Render
+import { render } from 'react-dom';
+// React Class Names
+import classNames from 'classnames';
 
-	constructor (video, volumeControlEl, videoControlEl) {
 
-		this.video = document.getElementById(video);
-		this.volumeControlEl = document.getElementById(volumeControlEl);
-		this.videoControlEl = document.getElementById(videoControlEl);
-		
-		this.init = function () {
-			console.log('video init');
-			this.volumeControlEl.addEventListener('click', this.volumeControl);
-			this.videoControlEl.addEventListener('click', this.videoControl);
-		};		
-		
-		this.volumeControl = function(event) {
-			console.log('click volume control');
-			
-			console.log(this.video);
+// Video Controller Components
+import VideoController from './VideoController';
 
-			if(this.video.muted){
-				this.video.muted = false;
-				$(this.video).find('.icon-volume-mute').addClass('hidden');
-				$(this.video).find('.icon-volume').removeClass('hidden');
-			} else if (!video.muted) {
-				this.video.muted = true;
-				$(this.video).find('.icon-volume').addClass('hidden');
-				$(this.video).find('.icon-volume-mute').removeClass('hidden');    		
-			}
-		};
-		
-		this.videoControl = function(event) {
-			console.log('click video control');
-			if(this.video.paused){
-				this.video.play();
-				$(this.video).find('.icon-play').addClass('hidden');
-				$(this.video).find('.icon-pause').removeClass('hidden');
-			} else if (!this.video.paused) {
-				this.video.pause();
-				$(this.video).find('.icon-pause').addClass('hidden');
-				$(this.video).find('.icon-play').removeClass('hidden');    		
-			}				
-		};
+
+// Video Player
+class VideoPlayer extends React.Component {
+	constructor(props){
+		super(props);
+	
+		this.state = {
+			videoUrl : 'https://player.vimeo.com/external/117804497.hd.mp4?s=8aef53600c22e1063dcb665629d5cbe4cb8ad88c&profile_id=119',
+			videoPoster : ''
+		};	
+
 	};
 
+	render() {
+		return
+			<div>
+				<video poster={this.state.videoPoster} className="span_12" src={this.state.videoUrl} autoplay muted loop id="HeroVideo">
+					<p>Sorry, you need an HTML5 browser to view this full experience.</p>
+				</video>
+				<VideoController />
+			</div>;
+	};
+	
 }; // End Video Player
+	
 
 
 

@@ -99,6 +99,15 @@
 	} // End Menu Open
 } // Menu Icon
 
+// Right Shape Angle
+.right-angle {
+    position: absolute;
+    right: -50%;
+    top: 0;
+    @include transform(translateX(-20%));
+    z-index: 50;	
+}
+
 // Title Header
 .title-header {
 	display: table;
@@ -155,6 +164,25 @@
 
 } // End Title Header
 
+// Volume Controls Animation For UX
+@keyframes marginInMarginOut {
+	0% {
+		margin-bottom: 0;
+	}
+
+	25% {
+		margin-bottom: 0;
+	}
+
+	75% {
+		margin-bottom: 0;
+	}
+
+	100% {
+		margin-bottom: -18px;
+	}
+}
+
 // Video Player
 .video-player {
 	overflow: hidden;
@@ -170,45 +198,44 @@
 	}
 
 	.video-control {
+		animation: marginInMarginOut 10s ease-in-out;
+		animation-repeat: none;
 		background: $headerBg;
+    	bottom: 0;
 		cursor: pointer;
-    	height: 86px;    	
+		display: table;
     	left: 0;
-    	margin-left: -21px;
+    	margin-bottom: -18px;
     	position: absolute;
-    	top: 40%;
     	transition: .3s ease-in-out;
-    	transform: translateY(-40%);
-    	width: 35px;
     	z-index: 100;
-			
-			.icon {
-				color: rgba(255, 255, 255, 0.3);
-			    display: block;
-				@include font-size(18px);
-			    padding: 8px 5px;			
-			    text-align: center;
-			
-				&.hidden { display: none; }
-			}
-			
-			&.margin-left { margin-left: 0; }
-			
-			&:hover {
-				margin-left: 0;
-		
-				div.control:hover {
-					background: $cBlue;
-				    transition: .5s;
 
-					.icon {
-						color: $textColor;
-					}
-					img {
-						@include transform(scale(1.06));
-					}
+    	> div {
+    		display: table-cell;
+    	}
+			
+		.icon {
+			color: rgba(255, 255, 255, 0.25);
+		    display: block;
+			@include font-size(16px);
+		    padding: 5px;			
+		    text-align: center;
+		
+			&.hidden { display: none; }
+		} // End Icon
+		
+		&:hover {
+			margin-bottom: 0;
+
+			div.control:hover {
+				background: $cBlue;
+			    transition: .5s;
+
+				.icon {
+					color: $textColor;
 				}
-			} // End Video Control:hover
+			}
+		} // End Video Control:hover
 
 	} // End Volume Control
 
@@ -218,8 +245,8 @@
 .scroll-down {
     @include background-image-linear(transparent 20%, rgba(0,0,0,.8) 120%);
     font-family: $openSans;
-    height: 200px;
-    padding: 60px 25px 25px 25px;
+    height: 150px;
+    padding: 30px 25px 25px 25px;
     text-align: center;
     @include transform(translateX(0));
     transition: 2.1s ease-in-out, opacity 2.1s;
