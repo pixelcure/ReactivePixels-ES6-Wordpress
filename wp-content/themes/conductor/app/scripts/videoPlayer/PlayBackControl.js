@@ -25,20 +25,29 @@ class PlayBackControl extends React.Component {
 		};
 	};
 
-	ComponentDidMount() {
-
-	};
-
 	playBackControl() {
 		this.setState({
 			videoPlaying : this.state.videoPlaying ? false : true
 		});
 	};
 
+	ComponentDidMount() {
+
+	};
+
 	render() {
-		return 	<div onClick={this.playBackControl} className="control">
-			          <span className='icon-pause icon'></span>            
+	    
+	    var iconClass = classNames({
+	      'icon' : true,
+	      'icon-pause' : this.state.videoPlaying,
+	      'icon-play' : !this.state.videoPlaying
+	    });
+
+		return  <div onClick={this.playBackControl} className="control">
+			        <span className={iconClass}></span>            
 				</div>;
 	};	
 
 }; // End PlayBackControl
+
+export default PlayBackControl;

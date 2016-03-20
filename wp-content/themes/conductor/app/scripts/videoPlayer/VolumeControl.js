@@ -14,7 +14,7 @@ import classNames from 'classnames';
 class VolumeControl extends React.Component {
 	constructor(props){
 		super(props);
-		
+
 		this.state = {
 			videoAudio : false
 		};
@@ -29,9 +29,18 @@ class VolumeControl extends React.Component {
 	};
 
 	render() {
+	
+	    var iconClass = classNames({
+	      'icon': true,
+	      'icon-volume-mute': !this.state.videoAudio,
+	      'icon-volume': this.state.videoAudio
+	    });
+
 		return  <div onClick={this.volumeControl} className="control">          
-			          <span className='icon-volume-mute icon'></span>
-        		</div>;
+			          <span className={iconClass}></span>
+			    </div>;
 	};
 
 } // End Volume Control
+
+export default VolumeControl;

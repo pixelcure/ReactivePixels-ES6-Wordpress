@@ -11,8 +11,8 @@ import classNames from 'classnames';
 
 
 // PlayBack and Volume Control Components
-import PlayBackControl from './PlayBackControl';
-import VolumeControl from './VolumeControl';
+import { PlayBackControl } from './PlayBackControl';
+import { VolumeControl } from './VolumeControl';
 
 
 // Video Controller
@@ -23,15 +23,15 @@ class VideoController extends React.Component {
 	};
 
 	render() {
-		return  <div>
-					<aside className="videoControl">
-						<PlayBackControl />
-						<VolumeControl />
-					</aside>
-				</div>;
+		return  <aside className="video-control">
+					<PlayBackControl />
+					<VolumeControl />
+				</aside>
 	};
 
 }; // End Video Controller
+
+export default VideoController;
 
 
 
