@@ -17,18 +17,20 @@ import VolumeControl from './VolumeControl';
 
 // Video Controller
 class VideoController extends React.Component {
+
 	constructor(props){
 		super(props);
 	};
 
 	render() {
-		return
-			<aside className="videoControl">
-				<PlayBackControl />
-				<VolumeControl />
-			</aside>;
+		return  <div>
+					<aside className="videoControl">
+						<PlayBackControl />
+						<VolumeControl />
+					</aside>
+				</div>;
 	};
-	
+
 }; // End Video Controller
 
 

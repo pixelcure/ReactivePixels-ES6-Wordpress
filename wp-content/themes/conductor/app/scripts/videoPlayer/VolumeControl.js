@@ -24,15 +24,14 @@ class VolumeControl extends React.Component {
 
 	volumeControl() {
 		this.setState({
-			videoAudio : videoAudio ? false : true
+			videoAudio : this.state.videoAudio ? false : true
 		});
 	};
 
 	render() {
-		return 	
-			<div onClick={this.volumeControl} className='volume control' id="volumeControl">          
-	          <span className='icon-volume-mute icon'></span>
-	        </div>;
+		return  <div onClick={this.volumeControl} className="control">          
+			          <span className='icon-volume-mute icon'></span>
+        		</div>;
 	};
 
 } // End Volume Control

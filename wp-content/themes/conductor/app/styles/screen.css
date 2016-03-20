@@ -3589,22 +3589,19 @@ header .header-inner .logo-container {
 
 /* line 5, sass/3_Components/_hero.scss */
 .hero-container {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+  height: 600px;
   margin: 0 0 45px 0;
   position: relative;
   width: 100%;
 }
-/* line 10, sass/3_Components/_hero.scss */
-.hero-container .video-player {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-  border-top: 2px solid rgba(0, 0, 0, 0.5);
-  height: 600px;
-}
-/* line 16, sass/3_Components/_hero.scss */
+/* line 13, sass/3_Components/_hero.scss */
 .hero-container .right-angle {
   opacity: .5;
   right: -60%;
 }
-/* line 21, sass/3_Components/_hero.scss */
+/* line 18, sass/3_Components/_hero.scss */
 .hero-container .hero-callout {
   bottom: 0;
   padding: 2%;
@@ -3614,7 +3611,7 @@ header .header-inner .logo-container {
   width: 33%;
   z-index: 100;
 }
-/* line 29, sass/3_Components/_hero.scss */
+/* line 26, sass/3_Components/_hero.scss */
 .hero-container .hero-callout h1 {
   color: #BEFCF7;
   font-weight: 100;

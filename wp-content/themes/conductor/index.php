@@ -40,10 +40,9 @@ if(is_home){
     </div><!-- / end menu icon -->
   </div><!-- / end welcome -->
 
-  <section class="hero-container">
-    <div class="video-player hero-video-player" id="heroVideoPlayer">
-
-    </div><!-- / end video player -->
+  <section class="hero-container video-player">
+      <div id="heroVideoPlayer" class="react-component">  
+      </div><!-- / end video player -->
       <svg class="right-angle" viewBox="0 0 179 158">
         <g stroke="none" stroke-width="1" fill="none">
             <g transform="translate(-1261.000000, -2.000000)" fill-opacity="0.664402174" fill="#0F2335">
@@ -55,10 +54,12 @@ if(is_home){
             </g>
         </g>
       </svg>      
-      <div class="hero-callout">
-        <h1>We are a company of Filmmakers, Directors &amp; Producers.</h1>
-      </div><!-- / end hero callout -->
-  </section><!-- end hero container -->
+      <div class="bottom-video-player">
+        <div class="hero-callout">
+          <h1>We are a company of Filmmakers, Directors &amp; Producers.</h1>
+        </div><!-- / end hero callout -->
+      </div><!-- / end bottom video player -->
+  </section><!-- end hero container video player -->
     
   <section class="intro-container intro-outer">
     <div class="inner-wrapper">

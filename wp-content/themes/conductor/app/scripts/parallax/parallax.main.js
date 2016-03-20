@@ -4,8 +4,6 @@
 class Parallax {
 	// Constructor
 	constructor (elClassName) {
-		// Is Watching Boolean, toggles whether to init after setup
-		this.isWatching = false,
 
 		// Elements to Parallax, default is parallax
 		this.className = typeof className === 'string' && className !== 'undefined' ? elClassName : 'parallax';
@@ -65,7 +63,8 @@ class Parallax {
 	    // On Window Resize
 	    window.onresize = function (){
 	        that.parallaxScroll();
-	    }	
+	    }
+	    
 	} // End Constructor
 	
 }; // End Parallax

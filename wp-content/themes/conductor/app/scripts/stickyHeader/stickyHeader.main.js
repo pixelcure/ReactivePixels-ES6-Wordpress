@@ -23,7 +23,7 @@ export default class {
 	            this.header.classList.remove('top');
 	        } else if (scrollTop => 115) {
 	            this.header.classList.add('top');
-	        }
+	        };
 		};
 
 		// On Scroll

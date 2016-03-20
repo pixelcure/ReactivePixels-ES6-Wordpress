@@ -17,10 +17,6 @@ class PlayBackControl extends React.Component {
 	constructor (props) {
 		super(props);
 		
-		this.props = {
-			vidControlEl : document.getElementById(videoControlEl)
-		};
-		
 		this.playBackControl = this.playBackControl.bind(this);
 		
 		this.state = {
@@ -30,7 +26,7 @@ class PlayBackControl extends React.Component {
 	};
 
 	ComponentDidMount() {
-			
+
 	};
 
 	playBackControl() {
@@ -40,10 +36,9 @@ class PlayBackControl extends React.Component {
 	};
 
 	render() {
-		return       	
-			<div onClick={this.playBackControl} className='halt control' id="videoControl">
-	          <span className='icon-pause icon'></span>            
-			</div>;
+		return 	<div onClick={this.playBackControl} className="control">
+			          <span className='icon-pause icon'></span>            
+				</div>;
 	};	
 
 }; // End PlayBackControl

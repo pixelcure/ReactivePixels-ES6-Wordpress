@@ -3,15 +3,12 @@
 ////////////////////////////////
 
 .hero-container {
+	border-bottom: 2px solid rgba(0, 0, 0, .5);
+    border-top: 2px solid rgba(0, 0, 0, .5);		
+	height: 600px;
 	margin: 0 0 45px 0;
 	position: relative;
 	width: 100%;
-
-	.video-player {
-		border-bottom: 2px solid rgba(0, 0, 0, .5);
-	    border-top: 2px solid rgba(0, 0, 0, .5);		
-		height: 600px;
-	} // End Video Player
 	
 	.right-angle {
 		opacity: .5;
